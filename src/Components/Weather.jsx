@@ -10,7 +10,7 @@ import snow_icon from "../Assets/snow.png";
 import wind_icon from "../Assets/wind.png";
 
 const Weather = () => {
-  const inputRef = useRef();
+  const [inputValue, SetInputValue] = useState("");
   const [weatherData, setWeatherData] = useState(null);
 
   const allIcons = {
@@ -70,12 +70,15 @@ const Weather = () => {
   return (
     <div className="weather">
       <div className="search-bar">
-        <input ref={inputRef} type="text" placeholder="Search" />
-        <img
-          src={search_icon}
-          alt=""
-          onClick={() => search(inputRef.current.value)}
+        <input
+          value={inputValue}
+          onChange={(e) => {
+            SetInputValue(e.target.value);
+          }}
+          type="text"
+          placeholder="Search"
         />
+        <img src={search_icon} alt="" onClick={() => search(inputValue)} />
       </div>
       {weatherData ? (
         // If weather data is available, show it
