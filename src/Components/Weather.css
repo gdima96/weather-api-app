@@ -67,3 +67,8 @@
   width: 26px;
   margin-top: 10px;
 }
+
+.weather p {
+  padding-top: 20px;
+  color: white;
+}

@@ -11,7 +11,7 @@ import wind_icon from "../Assets/wind.png";
 
 const Weather = () => {
   const inputRef = useRef();
-  const [weatherData, setWeatherData] = useState(false);
+  const [weatherData, setWeatherData] = useState(null);
 
   const allIcons = {
     "01d": clear_icon,
@@ -32,8 +32,8 @@ const Weather = () => {
 
   const search = async (city) => {
     if (!city) {
-      alert(`Introduce the city name`);
-      setWeatherData(false);
+      alert(`Please Enter a City Name`);
+      setWeatherData(null);
       return;
     }
     try {
@@ -58,14 +58,14 @@ const Weather = () => {
         icon: icon,
       });
     } catch (error) {
-      setWeatherData(false);
+      setWeatherData(null);
       console.error("Error in fetching weather data!");
     }
   };
 
-  useEffect(() => {
-    search("Bucharest");
-  }, []);
+  // useEffect(() => {
+  //   search("Bucharest");
+  // }, []);
 
   return (
     <div className="weather">
@@ -77,28 +77,36 @@ const Weather = () => {
           onClick={() => search(inputRef.current.value)}
         />
       </div>
-      {weatherData && (
+      {weatherData ? (
+        // If weather data is available, show it
         <>
-          <img src={weatherData.icon} alt=" " className="weather-icon" />
+          <img
+            src={weatherData.icon}
+            alt="Weather icon"
+            className="weather-icon"
+          />
           <p className="temperature">{weatherData.temperature}°C</p>
           <p className="location">{weatherData.location}</p>
           <div className="weather-data">
             <div className="col">
-              <img src={humidity_icon} alt="" />
+              <img src={humidity_icon} alt="Humidity" />
               <div>
                 <p>{weatherData.humidity} %</p>
                 <span>Humidity</span>
               </div>
             </div>
             <div className="col">
-              <img src={wind_icon} alt="" />
+              <img src={wind_icon} alt="Wind Speed" />
               <div>
-                <p>{weatherData.windSpeed}</p>
+                <p>{weatherData.windSpeed} m/s</p>
                 <span>Wind Speed</span>
               </div>
             </div>
           </div>
         </>
+      ) : (
+        // If no weather data, show placeholder message
+        <p>Please enter a city to get weather information</p>
       )}
     </div>
   );
