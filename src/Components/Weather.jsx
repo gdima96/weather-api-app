@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 import React, { useState } from "react";
-=======
-import React, { useEffect, useRef, useState } from "react";
->>>>>>> b63ccff5678d2c8421f99788c7695fbddae8fb7c
 import "./Weather.css";
 import search_icon from "../Assets/search.png";
 import clear_icon from "../Assets/clear.png";
@@ -13,10 +9,6 @@ import rain_icon from "../Assets/rain.png";
 import snow_icon from "../Assets/snow.png";
 import wind_icon from "../Assets/wind.png";
 
-<<<<<<< HEAD
-
-=======
->>>>>>> b63ccff5678d2c8421f99788c7695fbddae8fb7c
 const Weather = () => {
   const [inputValue, SetInputValue] = useState("");
   const [weatherData, setWeatherData] = useState(null);
@@ -46,10 +38,6 @@ const Weather = () => {
     }
     try {
       const apiKey = process.env.REACT_APP_API_KEY;
-<<<<<<< HEAD
-=======
-      // console.log("API KEY:", apiKey);
->>>>>>> b63ccff5678d2c8421f99788c7695fbddae8fb7c
       const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
       const response = await fetch(url);
